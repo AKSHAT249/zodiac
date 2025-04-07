@@ -11,11 +11,9 @@ function BarChart() {
     {
       apiUrl: import.meta.env.VITE_CUBE_API_URL || '',
       apiToken: import.meta.env.VITE_CUBE_API_TOKEN || '',
-      query: JSON.parse(import.meta.env.VITE_CUBE_QUERY || '{}') as Query,
-      pivotConfig: JSON.parse(
-        import.meta.env.VITE_CUBE_PIVOT_CONFIG || '{}'
-      ) as PivotConfig,
-      chartType: import.meta.env.VITE_CHART_TYPE as ChartType,
+      query: {"dimensions":["sampledata.value","sampledata.name"],"measures":["sampledata.count"]} as Query,
+      pivotConfig: {"x":["sampledata.value"],"y":["sampledata.name","measures"],"fillMissingDates":true,"joinDateRange":false} as PivotConfig,
+      chartType: 'bar' as ChartType,
       websockets: import.meta.env.VITE_CUBE_API_USE_WEBSOCKETS === 'true',
       subscription: import.meta.env.VITE_CUBE_API_USE_SUBSCRIPTION === 'true',
     } as Config
